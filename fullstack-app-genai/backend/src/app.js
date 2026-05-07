@@ -1,16 +1,22 @@
 import express from 'express';
-import cors from 'cors';
-import authRoutes from './routes/auth.routes.js';
+import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
+import chatRoutes from './routes/chat.routes.js';
+
 
 const app = express();
 
-app.use(cors());
+app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-// Routes
-app.use('/api/auth', authRoutes);
 
-// Health check
-app.get('/', (req, res) => res.json({ message: 'API is running 🚀' }));
+app.get("/", (req, res) => {
+    res.send("Hello World!");
+})
+
+app.use("/api/chat", chatRoutes)
+
 
 export default app;
