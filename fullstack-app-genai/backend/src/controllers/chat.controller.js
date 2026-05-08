@@ -6,7 +6,7 @@ export async function handleMessage(req, res) {
     console.log("Received message:", req.body);
     const message = req.body.message;
 
-    const message = [
+    message = [
         {
             role: "user",
             content: message
