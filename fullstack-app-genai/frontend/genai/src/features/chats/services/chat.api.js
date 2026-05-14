@@ -17,7 +17,7 @@ export async function sendMessage(message, onChunk = (chunk) => { }) {
         for (const line of lines) {
             if (line.startsWith("data: ")) {
                 const json = line.replace("data: ", "") // data hame string formate me mil raha hay so hum data key ko hata rahe hay or convert kar rahe hay json formate me.
-                const data = JSON.parse(jsonStr)
+                const data = JSON.parse(json)
                 onChunk(data)
                 console.log(data);
             }

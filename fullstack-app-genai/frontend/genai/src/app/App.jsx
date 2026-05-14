@@ -1,25 +1,18 @@
-import { useState } from 'react'
-import { sendMessage } from '../features/chats/services/chat.api'
+import SideBar from '../features/chats/components/SideBar'
+import Chat from '../features/chats/pages/chat'
 import './App.css'
 
 function App() {
-  const [message, setMessage] = useState('')
-
-  const handleSendMessage = async () => {
-    await sendMessage(message)
-  }
-
   return (
-    <><h1>Chat GPT</h1>
-      <input
-        type="text"
-        placeholder='Enter Message'
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
-      <button onClick={handleSendMessage}>Send</button>
+    <>
+      <div className="flex h-screen w-screen bg-zinc-900 text-white">
+        <SideBar />
+        <div className="flex-1 flex flex-col">
+          <Chat />
+        </div>
+      </div>
     </>
-  )
+  );
 }
 
 export default App

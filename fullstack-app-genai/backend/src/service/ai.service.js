@@ -1,7 +1,7 @@
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatMistralAI } from "@langchain/mistralai"
-import { createAgent } from "langchain"
 import config from "../config/config.js"
+import { createAgent } from "langchain";
 
 // const model = new ChatOpenAI({
 //     model: "gpt-4",
@@ -15,7 +15,7 @@ const model = new ChatMistralAI({
 
 const agent = createAgent({
     model,
-    tools: [],
+    tools: []
 })
 
 export async function generateResponse(messages) {
@@ -24,13 +24,7 @@ export async function generateResponse(messages) {
 }
 
 export async function getStream(messages) {
-    const stream = await agent.stream({
-        messages
-    },
-        {
-            streamMode: "messages"
-        }
-    )
+    const stream = await agent.stream({ messages }, { streamMode: "messages" })
 
     return stream
 }
